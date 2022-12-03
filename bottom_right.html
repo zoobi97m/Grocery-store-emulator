@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <link rel="stylesheet" href="main_styles.css" type="text/css" />
+
+    </head>
+    <body>
+        <h1 id= "headingg"> no products added to shopping cart yet </h1>
+        <table id = "table2" cellspacing = "20" width = "600"  ></table>
+        <form method = "get" id= "checkout" action = "checkout.php"> </form>
+        <form method = "get" id= "clear" action = "cart.php"> </form>
+        <script type="text/javascript" >
+        
+        var tabs = document.getElementById("table2");
+        var empty_cart_message = document.getElementById("headingg"); 
+       
+        function tester()
+        {
+            var form_clear = document.getElementById("clear");
+            var form_checkout = document.getElementById("checkout");
+            
+           
+            var clear = document.createElement('input');
+            var checkOut = document.createElement('input');
+               
+            clear.setAttribute("type", "submit");
+            clear.setAttribute("name", "clear_btn");
+            clear.setAttribute("value", "Clear cart");
+            clear.setAttribute("id", "clearBtn");
+            
+            checkOut.setAttribute("type", "submit");
+            checkOut.setAttribute("value", "Check out");
+            checkOut.setAttribute("name", "co");
+            checkOut.setAttribute("id", "checkOutBtn");
+               
+            form_clear.appendChild(clear);
+            form_checkout.appendChild(checkOut);
+                          
+
+           
+
+        }
+        
+        function logger(e)
+        {
+           empty_cart_message.innerHTML = "";
+           var heading = tabs.querySelector("#unit_amount");//h3 amount value
+           var iden = tabs.querySelector("#unit_identification");
+           console.log(tabs.innerHTML);
+         
+           var t = String(iden.innerHTML);
+            var k = t.replace(/\s/g, '');
+           var tester = tabs.querySelector("[id='"+k+"']");
+
+           console.log("Amount sent"+heading.innerHTML);
+           console.log("ID of selected Item"+iden.innerHTML);
+           console.log("insdie of tester"+tester.innerHTML);
+            console.log("value of K = "+k);
+            console.log("value of t= "+t);
+            
+           
+           if(tabs.querySelector("#unit_amount") != null)
+           {
+             
+              tester.innerHTML = heading.innerHTML;
+           }
+          
+          
+            
+        }
+        function handleClear()
+        {
+            
+        
+            while (tabs.firstChild) 
+            {
+                tabs.removeChild(tabs.firstChild);
+            }
+            document.getElementById("clearBtn").setAttribute("type", "hidden");
+            document.getElementById("checkOutBtn").setAttribute("type", "hidden");
+        }
+       
+        function alternateForm(e)
+        {
+            var params = "data = 3&baydot = 5";
+            e.preventDefault();
+            var xmhttp =  new XMLHttpRequest();
+              
+            handleClear();
+            empty_cart_message.innerHTML = "no products added to shopping cart yet";
+                
+                  xmhttp.open("POST", "clear.php", true);
+                  xmhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                  xmhttp.send(params);
+                  
+        }
+        
+       function createForm()
+        {
+                             
+            var form_checkout = document.createElement('form');
+            form_checkout.setAttribute("method", "POST");
+            form_checkout.setAttribute("action", "confirmation.php");
+            form_checkout.setAttribute("target", "_self");
+            form_checkout.setAttribute("id", "purchaseForm");
+            
+            var asterisk = "*";
+            asterisk = asterisk.fontcolor("red");
+            var mainTab = document.createElement('table');
+            mainTab.setAttribute("id", "checkOutTable2");
+            
+            var first_row = document.createElement('tr');
+            var second_row = document.createElement('tr');
+            var third_row = document.createElement('tr');
+            var fourth_row = document.createElement('tr');
+            var fifth_row = document.createElement('tr');
+            var sixth_row = document.createElement('tr');
+            var seventh_row =  document.createElement('tr');
+            
+            var td1_tf_name = document.createElement('td');
+            var td1_label_name = document.createElement('td');
+            td1_label_name.innerHTML = "Full name: "+asterisk;
+            td1_label_name.setAttribute("class", "vargas");
+            
+            var td2_tf_address = document.createElement('td');
+            var td2_label_address = document.createElement('td');
+            td2_label_address.innerHTML = "Address: "+asterisk;
+            td2_label_address.setAttribute("class", "vargas");
+            
+            var td3_tf_suburb = document.createElement('td');
+            var td3_label_suburb = document.createElement('td');
+            td3_label_suburb.innerHTML = "Suburb: "+asterisk;
+            td3_label_suburb.setAttribute("class", "vargas");
+            
+            var td4_tf_state = document.createElement('td');
+            var td4_label_state = document.createElement('td');
+            td4_label_state.innerHTML = "State: "+asterisk;
+            td4_label_state.setAttribute("class", "vargas");
+            
+            var td5_tf_country = document.createElement('td');
+            var td5_label_country = document.createElement('td');
+            td5_label_country.innerHTML = "Country: "+asterisk;
+            td5_label_country.setAttribute("class", "vargas");
+            
+            var td6_tf_email = document.createElement('td');
+            var td6_label_email = document.createElement('td');
+            td6_label_email.innerHTML = "Email: "+asterisk;
+            td6_label_email.setAttribute("class", "vargas");
+            
+            var td7 =  document.createElement('td');
+            
+            var name = document.createElement('input');
+            name.setAttribute("class", "camilla");
+            
+            var address = document.createElement('input');
+            address.setAttribute("class", "camilla");
+            
+            var suburb = document.createElement('input');
+            suburb.setAttribute("class", "camilla");
+            
+            var state = document.createElement('input');
+            state.setAttribute("class", "camilla");
+            
+            var country = document.createElement('input');
+            country.setAttribute("class", "camilla");
+            
+            var email = document.createElement('input');
+            email.setAttribute("class", "camilla");
+            
+            var purchase = document.createElement('input');
+            
+            
+            
+            name.setAttribute("type", "text");
+            name.setAttribute("name", "name_tf");
+            name.setAttribute("placeholder", "Enter Name and Lastname");
+            name.setAttribute("id", "name_textf");
+            name.setAttribute("class","textFieldsPurchase");
+            
+            address.setAttribute("type", "text");
+            address.setAttribute("name", "address_tf");
+            address.setAttribute("placeholder", "Enter residentail address");
+            address.setAttribute("id", "address_textf");
+            address.setAttribute("class","textFieldsPurchase");
+            
+            suburb.setAttribute("type", "text");
+            suburb.setAttribute("name", "suburb_tf");
+            suburb.setAttribute("placeholder", "Enter residentail suburb");
+            suburb.setAttribute("id", "suburb_textf");
+            suburb.className = ("textFieldsPurchase");
+            
+            state.setAttribute("type", "text");
+            state.setAttribute("name", "state_tf");
+            state.setAttribute("placeholder", "Enter residentail state");
+            state.setAttribute("id", "state_textf");
+            state.className = ("textFieldsPurchase");
+            
+            country.setAttribute("type", "text");
+            country.setAttribute("name", "country_tf");
+            country.setAttribute("placeholder", "Enter country");
+            country.setAttribute("id", "country_textf");
+            country.className = ("textFieldsPurchase");
+            
+            email.setAttribute("type", "text");
+            email.setAttribute("name", "email_tf");
+            email.setAttribute("placeholder", "Enter email address");
+            email.setAttribute("id", "email_textf");
+            email.className = ("textFieldsPurchase");
+            
+            purchase.setAttribute("type", "submit");
+            purchase.setAttribute("value", "Purchase");
+            purchase.setAttribute("name", "purchaseBtn");
+            purchase.setAttribute("id", "purchase_btn");
+
+            td1_tf_name.appendChild(name);
+            td2_tf_address.appendChild(address);
+            td3_tf_suburb.appendChild(suburb);
+            td4_tf_state.appendChild(state);
+            td5_tf_country.appendChild(country);
+            td6_tf_email.appendChild(email);
+            td7.appendChild(purchase);
+            
+            first_row.appendChild(td1_label_name);
+            first_row.appendChild(td1_tf_name);
+            
+            second_row.appendChild(td2_label_address);
+            second_row.appendChild(td2_tf_address);
+            
+            third_row.appendChild(td3_label_suburb);
+            third_row.appendChild(td3_tf_suburb);
+            
+            fourth_row.appendChild(td4_label_state);
+            fourth_row.appendChild(td4_tf_state);
+            
+            fifth_row.appendChild(td5_label_country);
+            fifth_row.appendChild(td5_tf_country);
+            
+            sixth_row.appendChild(td6_label_email);
+            sixth_row.appendChild(td6_tf_email);
+            
+            seventh_row.appendChild(purchase);
+            
+            mainTab.appendChild(first_row);
+            mainTab.appendChild(second_row);
+            mainTab.appendChild(third_row);
+            mainTab.appendChild(fourth_row);
+            mainTab.appendChild(fifth_row);
+            mainTab.appendChild(sixth_row);
+            mainTab.appendChild(seventh_row);
+            
+            form_checkout.appendChild(mainTab);
+            console.log("functional");
+           // return mainTab;
+           return form_checkout;
+                          
+        
+            
+        }
+        function alternateFormCheckout(e)
+        {
+            e.preventDefault();
+            
+          
+            
+            var top_frame = window.parent.document.getElementById("top_right_frame");
+            
+            var toppy = top_frame.contentWindow.document.getElementsByTagName("body")[0];
+       
+            var cart_summ =  document.createElement('h1');
+            cart_summ.setAttribute("id", "cartSumm");
+            cart_summ.innerHTML = "Cart Summary: ";
+            
+            var tanle = document.createElement('table');
+            tanle.setAttribute("id", "checkOutTable");
+            
+            while (toppy.firstChild) 
+            {
+                toppy.removeChild(toppy.firstChild);
+            }
+            
+            var xhttp =  new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4 && xhttp.status == 200) 
+                {
+                    tanle.innerHTML = xhttp.responseText;
+                    
+                }};
+                       
+             xhttp.open("GET", "checkout.php", true);
+             xhttp.send();         
+                       
+                      
+            var tester2 = createForm();
+            toppy.appendChild(cart_summ);
+            toppy.appendChild(tanle);
+            toppy.appendChild(tester2);
+           
+            console.log(toppy.innerHTML);
+    var zz = window.parent.document.getElementById("top_right_frame").contentWindow.document.getElementById("purchaseForm");
+         console.log(zz.innerHTML);
+         zz.addEventListener("submit",validate_purchase_form);
+          
+        
+            while (document.firstChild) 
+            {
+                document.removeChild(document.firstChild);
+            } 
+            
+            var h = document.createElement('h1');
+            h.innerHTML = "Please complete current checkout before trying again";
+            document.appendChild(h);
+          
+           
+        }
+        function validate_purchase_form(e)
+        {
+            
+            var allTextFields =  window.parent.document.getElementById("top_right_frame").contentWindow.document.getElementsByClassName("textFieldsPurchase");
+            for(var i=0;i<=5;i++)
+            {
+                console.log(allTextFields[i].value);
+                if(allTextFields[i].value =="")
+                {
+                    e.preventDefault();
+                    alert("All fields need to be filled in order to complete purchase");
+                    
+                }
+            }
+            console.log("there are "+allTextFields.length+"textfields given");
+            
+            
+        }
+         function alternateFormCheckout2(e)
+        {
+            e.preventDefault();
+            var xmhttp =  new XMLHttpRequest();
+              
+            empty_cart_message.innerHTML = "no products added to shopping cart yet";
+                
+                  xmhttp.open("POST", "checkout.php", true);
+                  xmhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                  xmhttp.send();
+        }
+     
+       tabs.addEventListener("DOMNodeInserted",tester,{once:true});
+       tabs.addEventListener("DOMNodeInserted",logger);
+       document.getElementById("clear").addEventListener("submit",alternateForm);
+       document.getElementById("checkout").addEventListener("submit",alternateFormCheckout,{once:true});
+      
+        </script>   
+    </body>
+</html>

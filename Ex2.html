@@ -1,0 +1,48 @@
+<!-- Update a web page without reloading the page
+Request data from a server - after the page has loaded
+Receive data from a server - after the page has loaded
+Send data to a server - in the background -->
+ 
+<html>
+<body>
+
+<div id="demo"><h2>Welcome to Ajax world</h2></div>
+
+<!--  add a button with onclick event using the javascript function below -->
+ 
+
+</body>
+</html> 
+
+<script>
+function loadDoc() {
+//The XMLHttpRequest object is used to exchange data with a server behind the scenes.
+// This means that it is possible to update parts of a web page, without reloading the whole page.
+  var xhttp = new XMLHttpRequest();
+  //onreadystatechange Stores a function (or the name of a function) to be called automatically each time the readyState property changes
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+	//4: request finished and response is ready, status 200: "OK"
+	//To get the response from a server, use the responseText or responseXML
+     
+	 //Missing code
+	 //add the code returned using responseText method to div html
+	 
+    }
+  };
+  //To send a request to a server, we use the open() and send() 
+  xhttp.open("GET", "ajax_info.txt", true);
+  xhttp.send();
+} 
+
+/*
+readyState 	Holds the status of the XMLHttpRequest. Changes from 0 to 4:
+0: request not initialized
+1: server connection established
+2: request received
+3: processing request
+4: request finished and response is ready
+status 	200: "OK"
+404: Page not found
+*/
+</script>

@@ -1,0 +1,117 @@
+h1,table,td{
+    color: rgb(40, 42, 53);
+    font-style: normal;
+    font-size: x-large;
+}
+
+table,td{
+    color: rgb(40, 42, 53);
+    font-style: oblique;
+     font-size: x-large;
+}
+.left{
+   font-weight: bold;
+   font-size: x-large;
+}
+#left_frame{
+   position:absolute;
+   width: 50%;
+   height: 100%;
+   top:0%;
+   left:0%;
+   
+   background-color: rgb(232, 241, 245);
+}
+#top_right_frame{
+   position:absolute;
+   width: 50%;
+   height: 50%;
+   top:0%;
+   right:0%;
+   background-color: rgb(232, 241, 245);
+}
+
+#bottom_right_frame{
+   position:absolute;
+   width: 50%;
+   height: 50%;
+   bottom:0%;
+   right:0%;
+   background-color: rgb(232, 241, 245);
+}
+#confirmation_heading
+{
+      font-weight: bold;
+    font-size: large;
+    font-style: normal;
+}
+.lefters
+{
+     font-weight: bold;
+    font-size: large;
+    font-style: normal;
+}
+.top{
+    font-weight: bold;
+    font-size: large;
+}
+.top_checkout,.price_final
+{
+     font-weight: bold;
+    font-size: medium;
+    font-style: normal;
+}
+.bottom_checkout
+{
+    font-size: medium;
+}
+.bottom{
+    font-size: medium;
+}
+.camilla
+{
+    width: 250px;
+}
+.vargas{
+     font-style: normal;
+     font-weight: bold;
+   font-size: medium;
+}
+
+#subBtn,#clearBtn,#checkOutBtn,#purchase_btn
+{
+    background-color: rgb(250, 225, 44);
+    font-weight: bold;
+}
+
+h3,h6
+{
+    display: none;
+}
+#clear{
+    float: left;
+    margin-left: 50px;
+    
+}
+#checkout{
+    float: left;
+        margin-left: 50px;
+
+}
+#checkOutTable
+{
+    width: 60%;
+
+       font-style: normal;
+   font-size: medium;
+   
+
+}
+#cartSumm
+{
+      font-style: normal;
+     font-weight: bold;
+   font-size: medium;
+   
+
+}

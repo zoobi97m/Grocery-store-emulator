@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <link rel="stylesheet" href="main_styles.css" type="text/css" />
+
+    </head>
+    <body>
+        <h4 id = "ds"></h4>
+        <p id = "ss"></p>
+        <p id = "sss"></p>
+        <table id = "table1" cellspacing = "35" width = "500">
+         
+        </table>
+        <form method = "get" id= "addProductForm" action = "product.php"> </form>
+        <script type="text/javascript">
+          
+           //piid.innerHTML = "hello";
+           // var heading = document.getElementById("sss");
+            function handleMessage(e)
+            {
+                var params = "data = "+e.data;
+             //   heading.innerHTML = e.data;
+                
+                var xhttp =  new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (xhttp.readyState == 4 && xhttp.status == 200) 
+                    {
+                        var tabby =  document.getElementById("table1");
+                        var formm = document.getElementById("addProductForm");   
+                        while ( formm.firstChild) 
+                        {
+                            formm.removeChild( formm.firstChild);
+                        }
+                
+                       // Typical action to be performed when the document is ready:
+                       tabby.innerHTML = xhttp.responseText;
+                        //document.getElementById("sss").innerHTML = xhttp.responseText;
+                      
+                           
+                           var tab = document.createElement('table');
+                           var row = document.createElement('tr');
+                           var td1_tf = document.createElement('td');
+                           var td2_add = document.createElement('td');
+                           var tf = document.createElement('input');
+                           var submit = document.createElement('input');
+                           
+                           tf.setAttribute("type", "text");
+                           tf.setAttribute("name", "pro_quan");
+                           tf.setAttribute("placeholder", "quantity needed");
+                           tf.setAttribute("id", "textFieldpp");
+                           submit.setAttribute("type", "submit");
+                           submit.setAttribute("value", "Add product");
+                           submit.setAttribute("name", "subby");
+                           submit.setAttribute("id", "subBtn");
+                           td1_tf.appendChild(tf);
+                           td2_add.appendChild(submit);
+                           row.appendChild(td1_tf);
+                           row.appendChild(td2_add);
+                           tab.appendChild(row);
+                           formm.appendChild(tab);
+                          
+                       var piid =  document.getElementById("unit_iden");
+                       //piid.innerHTML = "hello there mate";
+                       piid.style.display = "none";
+                       console.log(piid.innerHTML);
+                       
+                      // document.write("hello i am alive");
+                    }
+                  };
+                  /*
+                  var s = document.getElementById("pl");
+                  console.log(s.innerHTML);
+                  */
+                  xhttp.open("POST", "product.php", true);
+                  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                 // var a = JSON.stringify(e.data);
+                  xhttp.send(params);
+                  //xhttp.send();
+                
+            }
+            function formatQuan(input)
+            {
+                if(! isNaN(input))
+                {
+                     
+                    if(input < 0)
+                    {
+                        alert("invalid amount");
+                        return false;
+                    }
+                    else if(input == 0 || input == "")
+                    {
+                        alert("please enter amount wanted");
+                        return false;
+                    }
+                    else if(input >=31)
+                    {
+                        alert("amount too large, please try again");
+                        return false;
+                    }
+                    else 
+                        return true;
+                    
+                   
+                    
+                }
+                else
+                {
+                    alert("Invalid input, please enter a Numeric value");
+                    return false; 
+                   
+                }
+            }
+            function alternateForm(e)
+            {
+                e.preventDefault();
+                var i = document.getElementById("textFieldpp");
+                //console.log(i.value);
+                //console.log(formatQuan(i.value));
+                
+                if (formatQuan(i.value))
+                {
+                    var id = document.getElementById("unit_iden").innerHTML;
+                    var params = "amount = "+i.value+"&"+"pid = "+ id;
+                    var xmhttp =  new XMLHttpRequest();
+                    xmhttp.onreadystatechange = function() {
+                    if (xmhttp.readyState == 4 && xmhttp.status == 200) 
+                    {
+                        //var brfa = window.parent.document.getElementById("bottom_right_frame").contentWindow.document.getElementById("table2");
+                         var the_main_table = window.parent.document.getElementById("bottom_right_frame").contentWindow.document.getElementById("table2");
+                         var clear_reset = window.parent.document.getElementById("bottom_right_frame").contentWindow.document.getElementById("clearBtn");
+                         var check_out_reset = window.parent.document.getElementById("bottom_right_frame").contentWindow.document.getElementById("checkOutBtn");
+
+                        the_main_table.innerHTML = xmhttp.responseText;
+                        clear_reset.setAttribute("type", "submit");
+                        check_out_reset.setAttribute("type", "submit");
+                        //console.log(xmhttp.responseText);
+                        
+                    }
+                  };
+                 
+                  xmhttp.open("POST", "cart.php", true);
+                  xmhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                  xmhttp.send(params);
+                  
+                  
+                    
+                }
+                
+                
+            }
+            window.addEventListener("message", handleMessage,false );
+            document.getElementById("addProductForm").addEventListener("submit", alternateForm);
+            /*
+            if (document.getElementById("unit_iden"))
+                console.log("it exists");
+            else 
+                console.log("it doesnt exist");
+                */
+              
+        </script>
+       
+        
+        
+
+    </body>
+</html>
